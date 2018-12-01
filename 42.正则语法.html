@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>42.正则语法</title>
+		<script type="text/javascript">
+			/*
+			 *使用字面量来创建正则表达式
+			 * 		语法： var 变量 = /正则表达式/匹配模式
+			 * 使用字面量创建正则表达式更加简单，但是使用构造函数
+			 * 更加灵活
+			 * */
+			var reg = new RegExp("a","i");
+			var reg = /a/i;
+			//console.log(reg);
+			//创建一个正则表达式，检查字符串中是否含有a或b
+			var reg = /a|b/;
+			// reg = /a|b|c/;
+			//console.log(reg.test("acg"));
+			//console.log(reg.test("bcg"));
+			/*
+			 *[]里面的内容也是或的关系
+			 * [ab] == a|b
+			 * [a-z]任意的小写字母
+			 * [A-Z]任意的大写字母
+			 * [A-z]任意字母，忽略大小写
+			 * [0-9]表示任意数字
+			 * */
+			//表示任意的小写字母，大写字母也同理
+			var reg = /[A-z]/;
+			//console.log(reg.test("A"));
+			
+			//检查一个字符串中是否含有abc或adc或aec
+			var reg = /a[bde]c/;
+			//console.log(reg.test("aec"));
+			/*
+			 *[^ ] 除了
+			 * [^ab]表示除了ab以外的，例如[^abc]则返回true
+			 * [^ab]则返回false
+			 * */
+			var reg = /[^ab]/;
+			console.log(reg.test("ab"));
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

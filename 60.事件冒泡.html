@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>60.事件冒泡</title>
+		<style type="text/css">
+			#box1{
+				width: 300px;
+				height: 300px;
+				background-color: greenyellow;
+			}
+			#s1{
+				background-color: yellow;
+			}
+		</style>
+		
+		<script type="text/javascript">
+			/*
+			 * 事件的冒泡(Bubble)
+			 * 	-所谓的冒泡指的就是时间的向上传导，当后代元素上的事件被触发时，
+			 * 		其祖先元素的相同事件(比如都是onclick事件)也会被触发
+			 * 	-在开发中大部分情况的冒泡都是有用的，如果不希望发生事件冒泡，
+			 * 		可以通过事件对象来取消冒泡
+			 */
+			
+			window.onload = function(){
+				//获取span
+				var s1 = document.getElementById("s1");
+				//为span绑定单击响应函数
+				s1.onclick = function(event){
+					//解决浏览器兼容性问题
+					event = event || window.event;
+					alert("我是span的单击响应事件");
+					//取消冒泡
+					event.cancelBubble  = true;
+				};
+				
+				//获取box1
+				var box1 = document.getElementById("box1");
+				//为box1绑定单击响应函数
+				box1.onclick = function(event){
+					//解决浏览器兼容性问题
+					event = event || window.event;
+					alert("我是box1的单击响应事件");
+					//取消冒泡
+					event.cancelBubble  = true;
+				};
+				
+				//获取body
+				//var body = document.getElementById("body");
+				//为body绑定单击响应函数
+					document.body.onclick = function(){
+					alert("我是body的单击响应函数");
+				};
+			};
+		</script>
+	</head>
+	<body id="body"> 
+		<div id="box1">
+			我是box1
+			<span id="s1">我是span</span>
+		</div>
+	</body>
+</html>

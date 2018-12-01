@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>38.原型对象</title>
+		<script type="text/javascript">
+			/*
+			 *原型prototype
+			 * 
+			 * 我们所创建的每一个函数，解析器都会向函数中添加一个属性prototype
+			 * 		这个属性对应着每个属性，这个对象就是我们所谓的原型对象
+			 * 如果函数作为普通函数调用prototype没有任何作用
+			 * 当函数通过构造函数调用时，它创建的对象中都会有一个隐含的属性
+			 * 		指向该构造函数的额原型对象，我们通过__proto__来访问该属性
+			 * 
+			 * 原型对象就相当于一个公共的区域，所有同一个类的实例都可以访问到这个原型对象，
+			 * 		我们可以将对象中共有的内容，统一设置到原型对象中
+			 * 
+			 * 当我们访问一个对象的属性和方法时，它会现在对象自身寻找，如果有则直接使用，
+			 * 如果没有则会去原型对象中寻找，如果找到则直接使用
+			 * 		
+			 * 
+			 * */
+			function MyClass(){
+				
+			}
+			//向MyClass的原型对象中添加属性a
+			MyClass.prototype.a = 123;
+			//向MyClass的原型对象中添加方法
+			
+			//向MyClass的原型中添加一个方法
+			MyClass.prototype.sayHello = function(){
+				alert("Hello");
+			}
+			var mc  = new MyClass();
+			var mc2  = new MyClass();
+			//向mc中添加属性a
+			//若mc对象中有a属性则在mc对象中寻找，若没有则到公共区域prototype中寻找
+			mc.a = "我是mc中的a";
+			//会输出我是mc中的a
+			console.log(mc.a);
+			//会输出123
+			console.log(mc2.a);
+			
+			//虽然mc中没有sayHello方法，但是原型中有，则会去原型中寻找
+			mc.sayHello(); 
+			
+			
+//			console.log(MyClass.prototype);
+			//指向原型对象，返回true
+//			console.log(mc.__proto__ == MyClass.prototype);
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

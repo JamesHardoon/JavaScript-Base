@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>29.枚举对象中的属性</title>
+		<script type="text/javascript">
+			
+			var obj = {
+				name:"孙悟空",
+				age:18,
+				gender:"男",
+				address:"花果山"
+			};
+			
+			//枚举对象中的属性
+			//使用 for...in属性
+			/*
+			 *语法：
+			 * 	for (var 变量  in  对象){
+			 * 	
+			 * }
+			 * for...in语句：对象中有几个属性，循环就会运行几次
+			 * 每次执行会将对象中的一个属性的名字赋值给变量
+			 * */
+			
+			for (var n in obj){
+				console.log("属性名：" + n);
+				//console.log("属性值：" + obj.n); 这种写法不对
+				//console.log("属性值：" + obj["n"]); 这种写法也不对
+				console.log("属性值：" + obj[n]);
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

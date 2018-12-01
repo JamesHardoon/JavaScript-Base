@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>10.while循环练习</title>
+		<script type="text/javascript">
+			//年利率为5%，1000增长到5000需要多少年
+			//第一年：1000*(1+0.05)
+			//第二年:1000*(1+0.05)^2
+			//第N年：1000*(1+0.05)^n
+			//1000*(1+0.05)^n=5000   1.05^n=5   
+			var money  = 20000;
+			var count = 0;
+			do{
+				money *= 1.057;
+				count++;
+			}while(money < 25000)
+			alert(count);
+			alert(money);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

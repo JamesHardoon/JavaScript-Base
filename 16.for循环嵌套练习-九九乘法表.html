@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>16.九九乘法表</title>
+		<script type="text/javascript">
+			
+			//九九乘法表
+			//创建外层循环，用来控制乘法表的高度
+			for (var i = 1; i <= 9; i++){
+				//创建内层循环，用来控制乘法表的宽度
+				for (var j = 1; j <= i; j++){
+					document.write("<span>" + j + "*" + i + "="+ j*i + "</span>");
+				}
+				document.write("</br>")
+			}
+		</script>
+		<style type="text/css">
+			span{
+				display: inline-block;
+				width: 80px;
+			}
+		</style>
+	</head>
+	<body>
+	</body>
+</html>

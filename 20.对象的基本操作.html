@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>20.对象的基本操作</title>
+		<script type="text/javascript">
+			//创建对象
+			/*
+			 * 使用new关键字调用的函数，是构造函数constructor
+			 * 构造函数是专门用来创建对象的函数
+			 * 使用typeof来检查一个对象时，会返回Object
+			 */
+			var obj = new Object();
+			console.log(obj);
+			
+			/*
+			 * 在对象中保存的值称为属性
+			 * 向对象中添加属性
+			 * 
+			 * 语法：对象.属性=属性值
+			 * */
+			//向Object中添加一个name属性
+			obj.name="孙悟空";
+			//向Object中添加一个gender属性
+			obj.gender="男";
+			//向Object中添加一个age属性
+			obj.age=18;
+			
+			/*
+			 *读取对象中的属性 
+			 * 语法：对象.属性
+			 * 
+			 * 如果读取对象中没有的属性，不会报错而会返回undefined
+			 * */
+			console.log(obj.name);
+			
+			/*
+			 *修改对象的属性
+			 * 语法：对象.属性=新值
+			 * */
+			
+			obj.age=500;
+			
+			/*
+			 *删除对象的属性
+			 * 语法：delete 对象.属性
+			 * */
+			delete obj.gender;
+			console.log(gender);
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

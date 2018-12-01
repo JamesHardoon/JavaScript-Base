@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>09.逻辑运算符</title>
+		<script type="text/javascript">
+			/*
+			 * &&  ||非布尔值的情况
+			 * 	-对于非布尔值进行与运算与或运算时，
+			 * 		会先将其转换为布尔值，然后再运算，并且返回原值
+			 * 	-与运算：
+			 * 		-如果第一个值为true，则必然返回第二个值
+			 * 		-如果第一个值为false，则直接返回第一个值
+			 * 	-或运算：
+			 * 		-如果第一个值是true，则直接返回第一个值
+			 * 		-如果第一个值是false，则直接返回第二个值
+			 * */
+			//与运算：如果两个值都为true，在返回后面的值
+			 //eg:var result = 5 && 6；
+//			var result = 5 && 6；
+//			console.log("result = " + result);
+			
+			//与运算：如果两个值中有false，则返回靠前的false
+			//false && true
+//			result = 0 && 2;
+//			result = 2 && 0;
+			//false && false
+//			result = NaN && 0;
+//			result = 0 && NaN;
+			
+			//true || true
+//			result = 2 || 1;
+			
+//			result = "" + "hello"
+//			console.log(result);
+			var score = prompt("请输入数字:");
+//			console.log("score=" + score);
+			alert("score="+ score);
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

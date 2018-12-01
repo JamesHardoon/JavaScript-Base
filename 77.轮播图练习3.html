@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>77.轮播图练习3</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#outer{
+				/*居中*/
+				margin: 50px auto;
+				width: 520px;
+				height: 339px;
+				background-color: greenyellow;
+				padding: 10px 0 ;
+				/*子元素开启了绝对定位，父元素开启相对定位*/
+				position: relative;
+				/*隐藏溢出部分*/
+				overflow: hidden;
+			}
+			#imgList{
+				list-style: none;
+				/*设置ul的宽度*/
+				/*width: 2600px;*/
+				/*开启绝对定位*/
+				position: absolute;
+				/*设置偏移量*/
+				/*
+				 * 每向左移动520px，就会显示下一张图片
+				 */
+				left: 0px;
+			}
+			#imgList li{
+				float: left;
+				margin: 0 10px;
+			}
+			/*设置导航按钮*/
+			#navDiv{
+				/*开启绝对定位*/
+				position: absolute;
+				/*设置位置*/
+				bottom: 15px;
+				/*
+				 * 设置left值
+				 * 	outer宽度为520
+				 * 	navDiv宽度为25*5=125
+				 * left：(520-125)/2=197.5
+				 * 
+				 * 但是通常不这样做，因为这样不就把位置写死了，
+				 * 到时候增加或减少navDiv的个数，将会导致位置不居中，
+				 * 通常是在JS中设置导航按钮的位置
+				 */
+				/*left: 197.5px;*/
+				
+			}
+			#navDiv a{
+				float: left;
+				width: 10px;
+				height: 10px;
+				background-color: red;
+				margin: 0 5px;
+				/*设置透明度*/
+				opacity: 0.5;
+				/*兼容IE8透明*/
+				filter: alpha(opacity=50);
+				border-radius: 50%;
+			}
+			/*设置鼠标移入的效果*/
+			#navDiv a:hover{
+				background-color: black;
+				
+			}
+		</style>
+		<!--引入工具-->
+		<script type="text/javascript" src="js/tools.js"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				//获取imgList
+				var imgList = document.getElementById("imgList");
+				//获取页面中所有的img标签
+				var imgArr = document.getElementsByTagName("img");
+				//设置imgList的宽度
+				imgList.style.width = 520*imgArr.length + "px"; 
+				
+				/*设置导航按钮的位置居中*/
+				//获取navDiv
+				var navDiv = document.getElementById("navDiv");
+				//获取outer
+				var outer = document.getElementById("outer");
+				//设置navDiv的left值
+				//整个outer的宽度-navDiv的宽度的一半，就是居中位置，
+				//这样写的好处就是更加灵活
+				navDiv.style.left = (outer.offsetWidth - navDiv.offsetWidth) / 2 + "px";
+				
+				//设置默认显示图片的索引
+				var index = 0;
+				
+				//获取所有的a
+				var allA = document.getElementsByTagName("a");
+				
+				//设置默认选中的效果
+				allA[index].style.backgroundColor = "black";
+				
+				/*
+				 * 实现功能：点击超链接切换到指定的图片
+				 * 		点击第一个超链接，显示第一张图片
+				 * 		点击第一个超链接，显示第一张图片
+				 * 		………………………………………………………………………………
+				 */
+				//为所有的a绑定单击响应函数
+				for (var i = 0; i < allA.length; i++){
+					
+					//为每一个超链接都添加一个num属性
+					allA[i].num = i;
+					
+					allA[i].onclick = function (){
+						
+						//在手动点击导航按钮时，关闭自动切换的定时器
+						clearInterval(timer);
+						
+						//获取点击超链接的索引,并将其设置为index
+						index = this.num;
+						//切换图片
+						/*
+						 * 第一张 索引为0，left为0
+						 * 第二张 索引为1，left为-520
+						 * 第一张 索引为2，left为-1040
+						 * 第一张 索引为3，left为-1560
+						 * 第一张 索引为4，left为-2080
+						 */
+						//imgList.style.left = index * (-520) + "px";
+						
+						//修正正在显示的a
+						setA();
+						//使用move函数来切换图片
+						move(imgList,"left",-520*index,20,function(){
+							//动画执行完毕，开启自动切换
+							autoChange();
+						});
+						
+					};
+				}
+				
+				//自动切换图片
+				autoChange();
+				
+				//创建一个方法用来设置选中的a
+				function setA(){
+					
+					//判断当前索引是否为最后一张图片
+					if (index >= imgArr.length - 1){
+						//将index设置为0
+						index = 0;
+						//此时显示的是最后一张图片，而最后一张图片跟第一张图片一模一样
+						//通过CSS将最后一张图片切换为第一张图片
+						imgList.style.left = 0;
+					}
+					
+					//遍历所有的a,并将它们的背景颜色设置为红色
+					for (var i = 0; i < allA.length; i++){
+						//因为这样设置就是为a设置内联样式，优先级比较高，所以点击完后
+						//背景都会显示为红色，这里设置其为空串，让其直接使用在style中
+						//设置的背景颜色红色，即可
+						allA[i].style.backgroundColor = "";
+					}
+					//将选中的a的背景颜色设置为黑色
+					allA[index].style.backgroundColor = "black";
+				};
+				//创建一个自动切换的定时器标识
+				var timer;
+				//创建一个函数，用来开启自动切换图片
+				function autoChange(){
+					//开启一个定时器，用来切换图片
+					timer = setInterval(function(){
+						//使索引自增
+						index ++;
+						//判断index的值,当大于imgArr.length的长度时，自动切换从0开始切换
+						index %= imgArr.length;
+						//执行动画，切换图片
+						move(imgList,"left",-520*index,20,function(){
+							//修改导航按钮的背景颜色
+							setA();
+						})
+					},3000);
+					
+					
+				}
+			};
+		</script>
+	</head>
+	<body>
+		<!--创建一个外部div来作为大的容器-->
+		<div id="outer">
+			<!--创建一个ul，用来放置图片-->
+			<ul id="imgList">
+				<li><img src="img/NBA/10.jpg"/></li>
+				<li><img src="img/NBA/11.jpg"/></li>
+				<li><img src="img/NBA/12.jpg"/></li>
+				<li><img src="img/NBA/13.jpg"/></li>
+				<li><img src="img/NBA/14.jpg"/></li>
+				<!--再添加一张图片，使其跟第一张图片一样，用于图片切换到第五张时，再次切换为第一张-->
+				<li><img src="img/NBA/10.jpg"/></li>
+			</ul>
+			<!--创建导航按钮-->
+			<div id="navDiv">
+				<a href="javascript:;"></a>
+				<a href="javascript:;"></a>
+				<a href="javascript:;"></a>
+				<a href="javascript:;"></a>
+				<a href="javascript:;"></a>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>40.splice出重练习</title>
+		<script type="text/javascript">
+			//创建一个新的数组
+			var arr = [1,2,3,4,5,5,6,6,7,8,3,2,1,9,0];
+			//遍历数组
+			//去除数组中重复的数字
+			//获取数组中的每个元素
+			for (var i = 0; i < arr.length; i++){
+				//获取当前元素后的所有元素
+				for (var j = i+1; j < arr.length; j++){
+					//判断两个元素的值是否相等
+					if (arr[i] == arr[j] ){
+						//如果相等则证明出现了相等的元素，则删除j对应的元素
+						//表明删除j元素后面的一个元素   
+						arr.splice(j,1);
+						//当删除了当前j所在的元素以后，后面的元素会自动补位
+						//此时i将不会比较这个补位的j元素，然而我们需要再比较一次这个位置的元素，
+						//故使j--,这样j++与j--向抵消
+						j--;
+					}
+				}
+			}
+			console.log(arr);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

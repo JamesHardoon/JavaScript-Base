@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>37.构造方法的改进</title>
+		<script type="text/javascript">
+			/*
+			 * 创建一个Person构造函数
+			 * 	-在Person构造函数中为每一个对象添加一个sayName()方法，
+			 * 		目前我们的方法是在构造函数内部创建的，也就是构造函数
+			 * 			每执行一次就会创建一个新的sayName方法
+			 * 		但是所有实例中的sayName方法都是唯一的
+			 * 
+			 * 		这样就导致函数执行一次就会创建一个新的方法，执行10000次就会创建
+			 *  	         创建10000个新的方法，而这10000个方法都是一模一样的，这是完全没有必要的，
+			 * 		         完全可以是所有的对象共享同一个方法(即将sayName作为全局函数)
+			 * */
+			function Person(name,age,gender){
+				//向新建的对象中添加一个name属性
+				this.name=name;
+				this.age=age;
+				this.gender=gender;
+				//向对象中添加一个方法
+				//this.sayName=fun;
+			}
+			//将sayName方法在全局作用域中定义
+			/*
+			 *将函数定义在全局作用域，污染了全局作用域的命名空间(即后面就不能命名为fun)
+			 * 而且定义在全局作用域的的函数很不安全
+			 * (即后面若出现了以fun命名的函数，就会将此函数覆盖掉)
+			 * function fun(){
+			 * 	alert("大家好我是" + this.name);
+			 * }
+			 * 
+			 * 所以这种方式不好，一般使用prototype方式
+			 * */
+
+			//直接向原型对象中添加sayName方法
+			//这种方式不会影响到全局作用域
+			Person.prototype.sayName = function(){
+				alert("大家好我是" + this.name);
+			}
+			var per = new Person("James",33,"male");
+			var per2 = new Person("Pual",33,"male");
+			var per3 = new Person("Wade",34,"male");
+			
+			console.log(per);
+			console.log(per2);
+			console.log(per3);
+			
+//			console.log(per.sayName() == per2.sayName());
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

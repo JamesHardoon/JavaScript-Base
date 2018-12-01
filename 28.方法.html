@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>28.方法</title>
+		<script type="text/javascript">
+			//创建一个对象
+			var obj = new Object();
+			//向对象中添加属性
+			obj.name = "James";
+			obj.age = 33;
+			obj.gender = "male";
+			obj.address = "Cleveland Cavaliers";
+			
+			//对象的属性值可以是任何数据类型，也可以是个函数
+			//也可以是匿名函数
+			obj.sayName = function(){
+				console.log(obj.name);
+			};
+			function fun(){
+				console.log(obj.name);
+			};
+			
+//			console.log(obj.sayName);
+			//调用方法
+			obj.sayName();
+			//调用函数
+			fun();
+			
+			/*函数也可以称为对象的属性
+			 *
+			 *如果一个函数作为一个对象的属性保存
+			 *那么我们称这个函数是这个对象的方法
+			 * 调用函数就说调用对象的方法(method)
+			 * 
+			 * 方法和函数只是名称上的区别，并没有别的区别
+			 */
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

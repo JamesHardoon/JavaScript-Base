@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>67.是div随方向键移动练习</title>
+		<style type="text/css">
+			#box1{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				position: absolute;
+			}
+		</style>
+		
+		<script type="text/javascript">
+			//实现功能：使div可以根据不同的方向键向不同的方向移动
+			window.onload = function (){
+				
+				//为document绑定一个按键按下事件
+				document.onkeydown = function(event){
+					event = event || window.event;
+					//左上右下的keyCode分别为37-40
+					//定义一个变量，来表示移动的速度
+					var speed = 10;
+					
+					//再实现一个功能，当用户按了ctrl以后，速度加快
+					if (event.ctrlKey){
+						speed = 50;
+					}
+					
+					switch(event.keyCode){
+						case 37:
+							//alert("向左");		left值减小   
+							box1.style.left = box1.offsetLeft - speed + "px";
+							break;
+						case 38:
+							//alert("向上");		top值减小 
+							box1.style.top = box1.offsetTop - speed + "px";
+							break;
+						case 39:
+							//alert("向右");		left值增加  
+							box1.style.left = box1.offsetLeft + speed + "px";
+							break;
+						case 40:
+							//alert("向下");		top值增加  
+							box1.style.top = box1.offsetTop + speed + "px";
+							break;	
+					}
+					
+					
+					
+					/*var left = event.clientX + 10 + "px";
+					var top = event.clientY + 10 + "px";
+					
+					if (event.keyCode === 37){
+						box1.style.left = left + "px";
+					}*/
+					//box1.style.left = left + "px";
+					//box1.style.top = top + "px";
+				};
+			};
+			
+		</script>
+	</head>
+	<body>
+		<div id="box1"></div>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>02.JS编写的位置</title>
+		
+		<!--
+			-可以将JS代码编写到外部JS文件中，然后通过script标签引入
+			-写在外部的JS文件中的好处是可以在不同的外部文件中引入，
+				也可以利用到浏览器的缓存机制
+			-推荐此种使用方法
+		-->
+		<!--
+			-script标签一旦用于引入了外部的JS文件了，就不能再往里面编写代码了，
+				即使编写了，浏览器也会忽略
+			-如果需要则可以在编写一个script标签用于编写内部代码
+		-->
+		<script type="text/javascript" src="js/02.js"></script>
+		<script type="text/javascript">
+			alert("我是内部的JS代码");
+		</script>
+	</head>
+	<body>
+		<!--
+			-可以将JS代码写在onClick属性中，当我们点击按钮时，代码才会执行
+			-虽然可以将JS代码写在标签中的属性中，但是它们属于结构与行为耦合，
+				不利于后期维护，不推荐使用
+		-->
+		<button onclick="alert('我是写在button按钮中的JS代码');">点我一下</button>
+		<!--
+			-也可以将JS代码写在a标签中的href属性中，这样当点击超链接时，JS代码才会执行
+			-注意编写的格式javascript:alter("  ");
+			-还可以这样写javascript:;
+		-->
+		<a href="javascript:alter('我是写在超链接中的JS代码');">你也点一下</a>
+		<a href="javascript:;">还可以这样写</a>
+		
+		
+	</body>
+</html>

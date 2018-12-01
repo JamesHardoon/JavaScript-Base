@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>07.Number</title>
+		<script type="text/javascript">
+			/*
+			 * -Js中的所有数字都是Number类型，包括整数和浮点数(小数) 
+			 * -Js中可以使用typeof运算符来检查一个变量的类型
+			 * 		-检查字符串时会返回String
+			 * 		-检查数字时会返回Number
+			 * -在JS中可以表示数字的最大值，用Number.MAX_VALUE
+			 * -如果表示的数超过Number.MAX_VALUE时，会表示为Infinity
+			 * -并且Infinity为字面量，用typeof检查Infinity会返回Number
+			 * 		-Infinity正无穷
+			 * 		- -Infinity负无穷
+			 * 		-使用Infinity时，不要加引号否则使用typeof检查时返回String类型
+			 * -字符串与字符串相乘是会返回NaN
+			 * 		d="abc" * "abc";
+			 * -NaN是一个特殊数字，表示Not A Number ,也可以为d = NaN;(不要加引号)
+			 * -使用typeof检查是返回Number
+			 * 
+			 * -Number.MIN_VALUE表示大于零的最小正值，为5e-324
+			 * */
+			var a = 123;
+			var b = "123";
+			var c = Number.MAX_VALUE *Number.MAX_VALUE;
+			var d="abc" * "abc";
+			alert(d);
+			alert(typeof a);
+			console.log(typeof b);
+			console.log(Number.MAX_VALUE);
+			console.log(c);   //此时会输出：Infinity，表无穷的意思
+			
+			/*在JS中常用的整数的计算会正确计算出*/
+			var e = 6784+9789; 
+			console.log(e);
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>33.函数作用域练习</title>
+		<script type="text/javascript">
+			//1
+			var a = 123;
+			function fun(){
+				alert("fun="+a);
+			}
+			fun();
+		
+			//2
+			var a = 123; 
+			function fun2(){
+				alert("fun2="+a);
+				var a = 456;
+			}
+			fun2();
+			alert("fun22="+a);
+			
+			//3
+			var a = 123;
+			function fun3() {
+				alert("fun3="+a);
+				a = 456;
+			}
+			fun3();
+			alert("fun33="+a);
+			
+			//4
+			var a = 123;
+			function fun4(a){
+				alert("fun4="+a);
+				a = 456;
+			}
+			fun4();
+			alert("fun44="+a);
+			
+			//5
+			var a = 123;
+			function fun5(a){
+				alert("fun5="+a);
+				a = 456;
+			}
+			fun5(123);
+			alert("fun55="+a);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

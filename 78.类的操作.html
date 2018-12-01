@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>78.类的操作</title>
+		<style type="text/css">
+			.b1{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+			}
+			.b2{
+				width: 200px;
+				height: 200px;
+				background-color: yellow;
+			}
+		</style>
+		
+		<script type="text/javascript">
+			window .onload = function (){
+				//获取box
+				var box =  document.getElementById("box");
+				//获取btn01
+				var btn01 = document.getElementById("btn01");
+				//为btn01绑定单击响应事件
+				btn01.onclick =  function (){
+					//修改box的样式
+					/*
+					 * 通过style属性来修改元素的样式，没修改一个样式，浏览器就需要重新渲染一次页面，
+					 * 这样执行的性能是比较差的，而且这种形式当我们要修改多个样式时，也不太方便
+					 * 
+					 * 而且这种方式，结构和样式耦合，不便于以后的维护
+					 */
+					/*box.style.width = "200px";
+					box.style.height = "200px";
+					box.style.backgroundColor = "yellow";*/
+					
+					//修改box的class属性
+					/*
+					 * 我们可以通过修改元素的class属性来间接修改样式，
+					 * 这样一来，我们只需要修改一次，即可同时修改多个样式，
+					 * 这样浏览器只需要渲染页面一次，性能比较好，
+					 * 并且这种方式，可以使表现与行为进一步分离
+					 */
+					//box.className = "b2";
+					//还可以这样写，保留b1和b2
+					//注意，要写成" b2",不能写成"b2"这样，否则会拼串"b1b2"
+					//box.className += " b2";
+					//直接使用定义的addClass函数
+					//addClass(box,"b2");
+					//removeClass(box , "b2");
+					toggleClass(box , "b2");
+				};
+			};
+			
+			//定义一个函数，用来向一个元素中添加指定的class属性值
+			/*
+			 * 参数：
+			 * 	obj 要添加class属性的元素
+			 * 	cn 要添加的class值
+			 */
+			function addClass(obj,cn){
+				
+				//判断obj中是否含有cn
+				if (!hasClass(obj,cn)){
+					//注意添加" ",防止拼串
+					obj.className = " " + cn;
+				}
+ 			}
+			
+			/*
+			 * 判断一个元素中是否含有指定的class属性值
+			 * 如果有该class，则返回true，没有则返回false
+			 */
+			function hasClass(obj,cn){
+				
+				//判断obj中有没有cn  class
+				//创建一个正则表达式
+				//使用单词边界/\bb2\b/,表示有b2，且b2还是独立的，
+				//这样就能防止b2018返回true了，但是这里不能将b2写死，所以要通过构造函数
+				//var reg = /\bb2\b/;
+				
+				//这里要注意转义字符
+				//这样就能动态的去生成正则表达式了
+				var reg = new RegExp("\\b" + cn + "\\b");
+				
+				
+				return reg.test(obj.className);
+				
+			}
+			
+			/*
+			 * 删除一个元素中指定的class属性值
+			 */
+			function removeClass(obj,cn){
+				//创建一个正则表达式
+				var reg = new RegExp("\\b" + cn + "\\b");
+				
+				//删除class
+				obj.className = obj.className.replace(reg , "");
+			}
+			
+			/*
+			 * toggleClass可以用来切换一个类
+			 * 如果元素中具有该类，则删除
+			 * 如果元素中没有该类，则添加
+			 * 
+			 */
+			function toggleClass(obj , cn){
+				//判断obj中是否含有cn
+				if (hasClass(obj , cn)){
+					//有，则删除
+					removeClass(obj , cn);
+				} else {
+					//没有，则添加
+					addClass(obj , cn);
+				}
+			}
+			
+		</script>
+	</head>
+	<body>
+		<button id="btn01">点击按钮修改box的样式</button>
+		<br /><br />
+		<div id="box" class="b1 b2 "></div>
+		
+	</body>
+</html>

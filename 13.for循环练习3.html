@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>13.for循环练习3</title>
+		<script type="text/javascript">
+			//水仙花数
+			//水仙花数是指一个3位数，它的每个位上的数字的3次幂之和等于它本身。
+			//(例如：1^3+5^3+3^3=153),请打印所以的水仙花数。
+			//思路：分别获取三位数的百位，十位，个位数
+			
+			for (var i = 100; i < 1000; i++){
+				//获取百位数,并取整
+				var bai = parseInt(i / 100);
+				//获取十位数 
+				//方法：i-百位数，再除以十取整
+				var shi = parseInt((i-bai*100)/10);
+				//获取个位数
+				var ge = i % 10;
+				if (bai*bai*bai + shi*shi*shi + ge*ge*ge == i){
+					console.log(i);
+				}
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

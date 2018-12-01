@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>75.轮播图练习1</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#outer{
+				/*居中*/
+				margin: 50px auto;
+				width: 520px;
+				height: 339px;
+				background-color: greenyellow;
+				padding: 10px 0 ;
+				/*子元素开启了绝对定位，父元素开启相对定位*/
+				position: relative;
+				/*隐藏溢出部分*/
+				overflow: hidden;
+			}
+			#imgList{
+				list-style: none;
+				/*设置ul的宽度*/
+				/*width: 2600px;*/
+				/*开启绝对定位*/
+				position: absolute;
+				/*设置偏移量*/
+				/*
+				 * 每向左移动520px，就会显示下一张图片
+				 */
+				left: 0px;
+			}
+			#imgList li{
+				float: left;
+				margin: 0 10px;
+			}
+			/*设置导航按钮*/
+			#navDiv{
+				/*开启绝对定位*/
+				position: absolute;
+				/*设置位置*/
+				bottom: 15px;
+				/*
+				 * 设置left值
+				 * 	outer宽度为520
+				 * 	navDiv宽度为25*5=125
+				 * left：(520-125)/2=197.5
+				 * 
+				 * 但是通常不这样做，因为这样不就把位置写死了，
+				 * 到时候增加或减少navDiv的个数，将会导致位置不居中，
+				 * 通常是在JS中设置导航按钮的位置
+				 */
+				/*left: 197.5px;*/
+				
+			}
+			#navDiv a{
+				float: left;
+				width: 10px;
+				height: 10px;
+				background-color: red;
+				margin: 0 5px;
+				/*设置透明度*/
+				opacity: 0.5;
+				/*兼容IE8透明*/
+				filter: alpha(opacity=50);
+				border-radius: 50%;
+			}
+			/*设置鼠标移入的效果*/
+			#navDiv a:hover{
+				background-color: black;
+				
+			}
+		</style>
+		
+		<script type="text/javascript">
+			window.onload = function(){
+				//获取imgList
+				var imgList = document.getElementById("imgList");
+				//获取页面中所有的img标签
+				var imgArr = document.getElementsByTagName("img");
+				//设置imgList的宽度
+				imgList.style.width = 520*imgArr.length + "px"; 
+				
+				/*设置导航按钮的位置居中*/
+				//获取navDiv
+				var navDiv = document.getElementById("navDiv");
+				//获取outer
+				var outer = document.getElementById("outer");
+				//设置navDiv的left值
+				//整个outer的宽度-navDiv的宽度的一半，就是居中位置，
+				//这样写的好处就是更加灵活
+				navDiv.style.left = (outer.offsetWidth - navDiv.offsetWidth) / 2 + "px";
+				
+				//设置默认显示图片的索引
+				var index = 0;
+				
+				//获取所有的a
+				var allA = document.getElementsByTagName("a");
+				
+				//设置默认选中的效果
+				allA[index].style.backgroundColor = "black";
+			};
+		</script>
+	</head>
+	<body>
+		<!--创建一个外部div来作为大的容器-->
+		<div id="outer">
+			<!--创建一个ul，用来放置图片-->
+			<ul id="imgList">
+				<li><img src="img/NBA/7.jpg"/></li>
+				<li><img src="img/NBA/8.jpg"/></li>
+				<li><img src="img/NBA/3.jpg"/></li>
+				<li><img src="img/NBA/5.jpg"/></li>
+				<li><img src="img/NBA/6.jpg"/></li>
+			</ul>
+			<!--创建导航按钮-->
+			<div id="navDiv">
+				<a href="javascript:;"></a>
+				<a href="javascript:;"></a>
+				<a href="javascript:;"></a>
+				<a href="javascript:;"></a>
+				<a href="javascript:;"></a>
+			</div>
+		</div>
+	</body>
+</html>

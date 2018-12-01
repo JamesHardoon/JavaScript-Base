@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>18.质数练习测试性能</title>
+		<script type="text/javascript">
+			
+			//测试如下程序性能
+			//在程序开始之前，开启计时器
+			//console.time("计时器名字")可以用来开启一个计时器
+			//它需要一个字符串作为参数，这个字符串将会作为计时器的标识
+			console.time("test");
+			
+			//打印出2-100之间的所有质数
+			for (var i = 2; i <= 10000; i++){
+				//创建一个布尔值，用来保存结果，默认i是质数
+				flag = true;
+				
+				//判断i是否是质数
+				//获取2-i之间的所有质数
+				//其实检查到i的开方就行了，后面的都是重复的
+				//比如6,1*6 2*3 3*2 6*1，后面重复的可以舍去
+				for (var j = 2; j < Math.sqrt(i); j++){
+					//判断i是否能被j整除
+					if (i % j == 0){
+						//如果进入判断，则证明i不是质数
+						flag = false;
+						//一旦进入该循环说明i不是质数，此时循环再次执行的话就没有意义了
+						//可以使用break来结束循环
+//						break;
+						//不加break274ms
+						//加break36ms
+						//加break加开方后为2ms
+						//不加break加开方为8ms
+						//性能提升不少
+					}
+				}
+				//如果i是质数，打印i的值
+				if (flag){
+//					console.log(i);
+				}
+			}
+			//终止计时器
+			//console.timeEnd("计时器名字")
+			console.timeEnd("test");
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

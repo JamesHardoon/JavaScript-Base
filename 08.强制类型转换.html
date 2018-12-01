@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>08.强制类型转换</title>
+		<script type="text/javascript">
+			/*
+			 * 1.将其他类型转换为String类型：
+			 * 方式一：
+			 * 		-调用被转换数据类型的toString()方法
+			 * 		-该方法不会影响原变量，它会将转换的结果返回
+			 * 		-但是注意：null和undefined这两个值没有toString()方法,如果调用他们的方法，会报错
+			 * 方式二：
+			 * 		-调用String()函数，并将被转移的数据作为参数传递给函数()
+			 * 		-使用String()作强制类型转换时，
+			 * 			-对于Number和Boolean实际上就是调用的toString()方法
+			 * 			-但是对于null和undefined，就不会调用toString()方法
+			 * 				它会将null直接转换成“null“，将undefined直接转换为”undefined“
+			 * 
+			 * 
+			 * 2.将其他的数据类型转换为Number类型：
+			 * 方式一：
+			 * 		-使用Number()函数，比如a=Number(a);
+			 * 			-字符串-->数字
+			 * 				1.如果是纯数字的字符串，则直接将其转换为数字
+			 * 				2.如果字符串中有非数字的内容，则转换为NaN
+			 * 				3.如果字符串是一个空串或者是一个全是空格的字符串，则转换为0
+			 * 			-布尔-->数字
+			 * 				1.true转成1
+			 * 				2.false转成0
+			 * 			-null-->数字
+			 * 				 结果就是0
+			 * 			-undefined-->数字
+			 * 				结果为NaN
+			 * 方式二：
+			 * 		-这个方式专门用来对付字符串
+			 * 		-parseInt()把一个字符串转换成一个小数
+			 * 			-parseInt()可以将一个字符串中的有效整数内容取出来，然后转换为Number，
+			 * 			-比如a=123a456px，a=parserInt(a);转换为123。并且只会取整数
+			 * 		-parseFloat()把一个字符串转换成一个浮点数
+			 * 			-parseFloat()作用和parseInt()类似，不同的是它可以获得有效的小数
+			 * 		-如果对非parseInt()或parseFloat(),他会先将其转换为String，然后再操作
+			 * 
+			 * 3.将其他的数据类型转换成Boolean
+			 * 		-使用Boolean()函数
+			 * 			-数字-->布尔
+			 * 				-除了0和NaN，其余的都是true
+			 * 			-字符串-->布尔
+			 * 				-除了空串，其余的都是true
+			 * 			-null和undefined都会转换为false
+			 * 			-对象也会转换成true
+			 * */
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
